@@ -65,6 +65,14 @@ class SinglyLinkedList {
         return this
     }
 
+    isEmpty() {
+        if (this.head == null) {
+            return true
+        } else {
+            return false
+        }
+    }
+
     /**
      * Creates a new node with the given data and inserts it at the back of
      * this list.
@@ -88,6 +96,25 @@ class SinglyLinkedList {
         return this;
     }
 
+    insertAtBackMany(arr) {
+        // add each val from an array
+        for (let i = 0; i < arr.length; i++) {
+          this.insertAtBack(arr[i]);
+        }
+        return this;
+    }
+
+    toArray() {
+        const myArr = []
+        let runner = this.head
+
+        while (runner) {
+            myArr.push(runner.data)
+            runner = runner.next
+        }
+        return myArr
+    }
+
     insertAtBackRecursive(data, runner = this.head) {
         if (runner.next !== true) {
             runner.next = new SLNode(data)
@@ -96,15 +123,38 @@ class SinglyLinkedList {
             return this.insertAtBackRecursive(data, runner.next)
         }
     }
+
+    removeHead () {
+        if (this.isEmpty()) {
+            return this
+        } else {
+            this.head = this.head.next
+        }
+        return this
+    }
+
+    average() {
+        let total = 0
+        let count = 0
+        let runner = this.head
+
+        while (runner) {
+            total += runner.data
+            count++
+            runner = runner.next
+        }
+        return total / count
+    }
 }
 
+
 var sll = new SinglyLinkedList();
-sll.insertAtBack(1)
-sll.insertAtBack(2)
-sll.insertAtBack(3)
-sll.insertAtBack(4)
-sll.insertAtBack(5)
-sll.printValues()
+// sll.insertAtBack(1)
+// sll.insertAtBack(2)
+// sll.insertAtBack(3)
+// sll.insertAtBack(4)
+// sll.insertAtBack(5)
+// sll.printValues()
 // console.log(sll.insertAtBack().printValues())
 
 // sll.insertAtFront(10).insertAtFront(10).insertAtFront(10)
